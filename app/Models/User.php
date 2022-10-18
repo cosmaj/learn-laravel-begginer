@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -41,4 +42,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Mutator OR Setter change the normal/default behaviour of the field specified in the function name
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
+
+    //Accessor OR gettor
+    public function getNameAttribute($name)
+    {
+        return ucwords($name) ;
+    }
+
+    protected static function deleteOldImage(){
+        if (auth()->user()->avatar) {
+            \Storage::delete('/public/profile_images/'.auth()->user()->avatar);
+        } 
+    }
+
+    protected static function generateFileName($fileName){
+        $username = auth()->user()->email;
+        $time = time();
+        $randomString = "${time} ${fileName} ${username}";
+        return bcrypt($randomString);
+    }
+    public static function uploadAvatar($image){
+        $fileName = $image->getClientOriginalName();
+        $fileExtension = explode('.', $fileName);
+        $extension = $fileExtension[count($fileExtension)-1];
+        User::deleteOldImage();
+        $newFileName = User::generateFileName($fileName);
+        $newFileName = "${newFileName}.${extension}";
+        $image->storeAs('profile_images', $newFileName, 'public');
+        auth()->user()->update(['avatar' => $newFileName]);
+    }
+    
 }
