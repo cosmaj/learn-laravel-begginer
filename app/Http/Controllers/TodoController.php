@@ -32,6 +32,5 @@ class TodoController extends Controller
             Todo::storeTodo($taskTitle);
             return redirect()->back()->with('success_message', 'Todo saved successfully!');
         }
-        return redirect()->back()->with('error_message', 'Error! Task tiltle should not be empty');
     }
 }
