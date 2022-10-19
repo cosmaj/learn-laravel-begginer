@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -12,9 +11,9 @@ class UserController extends Controller
     {
         if ($request->hasFile('profile_img'))  {
             User::uploadAvatar($request->profile_img);
-            return redirect()->back()->with('success_message', 'Image uploaded successfully!');
+            return redirect()->back()->with('success_message', 'Success!');
         }
-        return redirect()->back()->with('error_message', 'Image upload failed');
+        return redirect()->back()->with('error_message', 'Error!');
 
     }
     public function index()

@@ -25,6 +25,14 @@ Route::get('/user', 'App\Http\Controllers\UserController@index');
 
 Route::post('/upload', [App\Http\Controllers\UserController::class, 'uploadImage']);
 
+Route::get('/todos', [App\Http\Controllers\TodoController::class, 'index']);
+
+Route::get('/todos/create', [App\Http\Controllers\TodoController::class, 'create']);
+
+Route::post('/todos/create', [App\Http\Controllers\TodoController::class, 'store']);
+
+Route::get('/todos/change', [App\Http\Controllers\TodoController::class, 'editTodo']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

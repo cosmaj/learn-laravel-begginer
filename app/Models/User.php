@@ -55,7 +55,7 @@ class User extends Authenticatable
         return ucwords($name) ;
     }
 
-    protected static function deleteOldImage(){
+    private function deleteOldImage(){
         if (auth()->user()->avatar) {
             \Storage::delete('/public/profile_images/'.auth()->user()->avatar);
         } 
@@ -71,7 +71,7 @@ class User extends Authenticatable
         $fileName = $image->getClientOriginalName();
         $fileExtension = explode('.', $fileName);
         $extension = $fileExtension[count($fileExtension)-1];
-        User::deleteOldImage();
+        (new self)->deleteOldImage();
         $newFileName = User::generateFileName($fileName);
         $newFileName = "${newFileName}.${extension}";
         $image->storeAs('profile_images', $newFileName, 'public');
