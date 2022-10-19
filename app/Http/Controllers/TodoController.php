@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TodoCreationRequest;
 use App\Models\Todo;
 
 class TodoController extends Controller
@@ -25,10 +26,7 @@ class TodoController extends Controller
         return stripcslashes($data);
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'title' => 'required',
-        ]);
+    public function store(TodoCreationRequest $request){
         if(trim($request->title)) {
             $taskTitle = $this->sanitizeData($request->title);
             Todo::storeTodo($taskTitle);
