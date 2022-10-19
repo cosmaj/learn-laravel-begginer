@@ -26,6 +26,9 @@ class TodoController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'title' => 'required',
+        ]);
         if(trim($request->title)) {
             $taskTitle = $this->sanitizeData($request->title);
             Todo::storeTodo($taskTitle);
