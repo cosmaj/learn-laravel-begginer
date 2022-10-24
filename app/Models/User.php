@@ -49,8 +49,8 @@ class User extends Authenticatable
     //     $this->attributes['password'] = bcrypt($password);
     // }
 
-    //Accessor OR gettor
-    public function getNameAttribute($name)
+    //Accessor OR getter
+    public function getNameAttribute($name): string
     {
         return ucwords($name) ;
     }
@@ -58,16 +58,18 @@ class User extends Authenticatable
     private function deleteOldImage(){
         if (auth()->user()->avatar) {
             \Storage::delete('/public/profile_images/'.auth()->user()->avatar);
-        } 
+        }
     }
 
-    protected static function generateFileName($fileName){
+    protected static function generateFileName($fileName): string
+    {
         $username = auth()->user()->email;
         $time = time();
         $randomString = "${time} ${fileName} ${username}";
         return bcrypt($randomString);
     }
-    public static function uploadAvatar($image){
+    public static function uploadAvatar($image)
+    {
         $fileName = $image->getClientOriginalName();
         $fileExtension = explode('.', $fileName);
         $extension = $fileExtension[count($fileExtension)-1];
@@ -77,5 +79,5 @@ class User extends Authenticatable
         $image->storeAs('profile_images', $newFileName, 'public');
         auth()->user()->update(['avatar' => $newFileName]);
     }
-    
+
 }

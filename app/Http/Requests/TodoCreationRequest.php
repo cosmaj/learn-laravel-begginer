@@ -11,7 +11,7 @@ class TodoCreationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
@@ -22,7 +22,7 @@ class TodoCreationRequest extends FormRequest
      * @return array<string, mixed>
      */
     //Form rules to be checked
-    public function rules()
+    public function rules():array
     {
         return [
             'title' => 'required|max:255',
@@ -30,7 +30,7 @@ class TodoCreationRequest extends FormRequest
     }
 
     // Custom error messages
-    public function messages(){
+    public function messages():array{
         return [
             'title.required' => 'Todo Title is required',
             'title.max' => 'Todo title should not exceed 255 chars',
