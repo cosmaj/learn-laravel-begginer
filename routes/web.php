@@ -35,7 +35,7 @@ Route::get('/todos/change/{id}', [App\Http\Controllers\TodoController::class, 'e
 
 Route::patch('/todos/change/{id}',[App\Http\Controllers\TodoController::class, 'update'])->name('todo.update');
 
-Route::delete('/todos/delete/{id}', [App\Http\Controllers\TodoController::class, 'delete'])->name('todo.delete');
+Route::get('/todos/delete/{todo}', [App\Http\Controllers\TodoController::class, 'delete'])->name('todo.delete');
 
 Auth::routes();
 

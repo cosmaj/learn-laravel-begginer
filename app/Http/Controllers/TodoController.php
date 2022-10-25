@@ -47,4 +47,8 @@ class TodoController extends Controller
         }
         return redirect()->back()->with('error_message', 'Todo title is required');
     }
+    public function delete(Todo $todo){
+        $todo->delete();
+        return redirect(route('todo.index'))->with('success_message', 'Todo deleted Sucessfully!');
+    }
 }

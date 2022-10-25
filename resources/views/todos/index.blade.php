@@ -32,7 +32,7 @@
                             <td> {{ $todo->completed ? 'Yes' : 'No' }} </td>
                             <td>
                                 <a href="/todos/change/{{$todo->id}}" class="btn btn-sm btn-warning mb-1">Edit</a>
-                                <a href="/todos/change{{$todo->id}}" class="btn btn-sm btn-danger mb-1">Delete</a>
+                                <a href="{{route('todo.delete',$todo->id)}}" class="btn btn-sm btn-danger mb-1">Delete</a>
                             </td>
                         </tr>
                     @endforeach
