@@ -9,7 +9,7 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title'];
+    protected $fillable = ['user_id', 'title', 'completed'];
 
     public static function storeTodo($taskTitle){
         (new self)::create(['user_id' => auth()->user()->id, 'title' => $taskTitle]);
