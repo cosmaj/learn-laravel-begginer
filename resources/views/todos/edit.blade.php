@@ -12,7 +12,7 @@
                     <x-alert></x-alert>
                     @csrf
                     @method('patch')
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="title">Task name</label>
                         <label class="w-100">
                             <input type="text" name="title" value="{{$todo->title}}" class="form-control"/>
@@ -20,13 +20,11 @@
                     </div>
                     <div class='form-check form-switch mb-3'>
                         <label for='completion' class='form-check-label'>Task completed?</label>
-                        <label class="w-100">
-                            <input type='checkbox' class='form-check-input' name='completed' {{$todo->completed ? 'checked': ''}}/>
-                        </label>
+                        <input type='checkbox' class='form-check-input' name='completed' {{$todo->completed ? 'checked': ''}}/>
                     </div>
                     <div class='mb-3'>
-                        <input type='reset' class='btn btn-danger m-2' value='Reset' />
-                        <button type='submit' class='btn btn-primary m-2' >Update</button>
+                        <input type='reset' class='btn btn-danger' value='Reset' />
+                        <button type='submit' class='btn btn-primary m-2'>Update</button>
                     </div>
                 </form>
             </div>
