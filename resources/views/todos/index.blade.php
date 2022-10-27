@@ -23,7 +23,7 @@
                     @foreach($todos as $todo)
                         <tr>
                             @if($todo->completed)
-                                <td> <span class="text-success">{{ $todo->title }}</span> </td>
+                                <td> <del>{{ $todo->title }}</del> </td>
                             @else
                                 <td> {{ $todo->title }} </td>
                             @endif
