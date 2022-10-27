@@ -39,7 +39,11 @@
                                     </form>
                                 @endif
                                 <a href="/todos/change/{{$todo->id}}" class="btn text-warning"><i class="fa fa-pen"></i></a>
-                                <a href="{{route('todo.delete',$todo->id)}}" class="btn text-danger"><i class="fa fa-trash"></i></a>
+                                <span class="btn text-danger" onclick="document.querySelector('#form-delete-{{$todo->id}}').submit();"><i class="fa fa-trash"></i></span>
+                                <form class="d-none" id="form-delete-{{$todo->id}}" method="POST" action="{{route('todo.delete', $todo->id)}}">
+                                    @csrf
+                                    @method('delete')
+                                </form>
                             </td>
                         </tr>
                     @endforeach

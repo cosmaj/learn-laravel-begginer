@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 //use App\Http\Controllers\UserController;
 
 /*
@@ -37,7 +37,7 @@ Route::patch('/todos/change/{todo}',[App\Http\Controllers\TodoController::class,
 
 Route::put('todos/completed/{todo}', [App\Http\Controllers\TodoController::class, 'completeTodo'])->name('todo.completed');
 
-Route::get('/todos/delete/{todo}', [App\Http\Controllers\TodoController::class, 'delete'])->name('todo.delete');
+Route::delete('/todos/delete/{todo}', [App\Http\Controllers\TodoController::class, 'delete'])->name('todo.delete');
 
 Auth::routes();
 
