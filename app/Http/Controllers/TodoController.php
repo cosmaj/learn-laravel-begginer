@@ -16,8 +16,7 @@ class TodoController extends Controller
         return view('todos.create');
     }
 
-    public function editTodo(Todo $id){
-        $todo = $id;
+    public function editTodo(Todo $todo){
         return view('todos.edit', compact('todo'));
     }
 
@@ -37,8 +36,7 @@ class TodoController extends Controller
         return redirect()->back()->with('error_message', 'Todo title is required');
     }
 
-    public function update(TodoCreationRequest $request, Todo $id){
-        $todo = $id;
+    public function update(TodoCreationRequest $request, Todo $todo){
         if(trim($request->title)) {
             $taskTitle = $this->sanitizeData($request->title);
             $completed = (bool)$request->completed;
@@ -49,6 +47,11 @@ class TodoController extends Controller
     }
     public function delete(Todo $todo){
         $todo->delete();
-        return redirect(route('todo.index'))->with('success_message', 'Todo deleted Sucessfully!');
+        return redirect(route('todo.index'))->with('success_message', 'Todo deleted Successfully!');
+    }
+
+    public function completeTodo(Todo $todo){
+        $todo->update(['completed' => true]);
+        return redirect(route('todo.index'))->with('success_message', 'Todo marked as completed!');
     }
 }

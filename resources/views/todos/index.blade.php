@@ -15,7 +15,6 @@
                         <th>Task Name</th>
                         <th>Created At</th>
                         <th>Last Update</th>
-                        <th>Completed</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -29,8 +28,16 @@
                             @endif
                             <td> {{ $todo->created_at }} </td>
                             <td> {{ $todo->updated_at }} </td>
-                            <td> {{ $todo->completed ? 'Yes' : 'No' }} </td>
                             <td>
+                                @if($todo->completed)
+                                    <span class="btn text-success fw-bolder"><i class="fa fa-check"></i></span>
+                                @else
+                                    <span class="btn text-secondary" onclick="document.querySelector('#form-completed-{{$todo->id}}').submit();"><i class="fa fa-check"></i></span>
+                                    <form class="d-none" id="form-completed-{{$todo->id}}" method="POST" action="{{route('todo.completed', $todo->id)}}">
+                                        @csrf
+                                        @method('put')
+                                    </form>
+                                @endif
                                 <a href="/todos/change/{{$todo->id}}" class="btn"><i class="fa fa-pen text-warning"></i></a>
                                 <a href="{{route('todo.delete',$todo->id)}}" class="btn"><i class="fa fa-trash text-danger"></i></a>
                             </td>

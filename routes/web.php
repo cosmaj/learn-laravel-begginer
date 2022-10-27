@@ -31,9 +31,11 @@ Route::get('/todos/create', [App\Http\Controllers\TodoController::class, 'create
 
 Route::post('/todos/create', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.create');
 
-Route::get('/todos/change/{id}', [App\Http\Controllers\TodoController::class, 'editTodo'])->name('todo.get.update');
+Route::get('/todos/change/{todo}', [App\Http\Controllers\TodoController::class, 'editTodo'])->name('todo.get.update');
 
-Route::patch('/todos/change/{id}',[App\Http\Controllers\TodoController::class, 'update'])->name('todo.update');
+Route::patch('/todos/change/{todo}',[App\Http\Controllers\TodoController::class, 'update'])->name('todo.update');
+
+Route::put('todos/completed/{todo}', [App\Http\Controllers\TodoController::class, 'completeTodo'])->name('todo.completed');
 
 Route::get('/todos/delete/{todo}', [App\Http\Controllers\TodoController::class, 'delete'])->name('todo.delete');
 
