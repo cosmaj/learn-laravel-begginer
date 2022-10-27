@@ -6,7 +6,7 @@
             <div class="shadow-lg col-md-8">
                 <div class="d-flex mt-3">
                     <h2 class="mx-auto fw-bolder text-muted">Edit my Todo</h2>
-                    <a href="/todos/create" class="btn btn-primary ms-auto my-1">New Todo</a>
+                    <a href="/todos/create" class="btn text-primary ms-auto mt-1 fs-2"><i class="fa fa-plus-circle"></i></a>
                 </div>
                 <form action="{{ route('todo.update', $todo->id) }}" method="POST">
                     <x-alert></x-alert>

@@ -14,8 +14,8 @@
                             <input type="text" name="title" class="form-control" />
                         </label>
                     </div>
+                    <a href="/todos" class="btn text-primary text-muted my-1 me-1 fs-3"><i class="fa fa-arrow-left"></i></a>
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a href="/todos" class="btn btn-success my-1 mx-2">All Todos</a>
                 </form>
             </div>
         </div>
