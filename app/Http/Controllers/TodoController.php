@@ -7,7 +7,7 @@ use App\Models\Todo;
 
 class TodoController extends Controller
 {
-    public function index(){
+    public function show(){
         $todos = Todo::orderBy('completed')->get(); //No need of order by? use Todo::all()
         return view('todos.index')->with(['todos' => $todos]);
     }
@@ -45,7 +45,7 @@ class TodoController extends Controller
         }
         return redirect()->back()->with('error_message', 'Todo title is required');
     }
-    public function delete(Todo $todo){
+    public function destroy(Todo $todo){
         $todo->delete();
         return redirect(route('todo.index'))->with('success_message', 'Todo deleted Successfully!');
     }

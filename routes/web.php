@@ -25,19 +25,19 @@ Route::get('/user', 'App\Http\Controllers\UserController@index');
 
 Route::post('/upload', [App\Http\Controllers\UserController::class, 'uploadImage']);
 
-Route::get('/todos', [App\Http\Controllers\TodoController::class, 'index'])->name('todo.index');
+Route::get('/todo', [App\Http\Controllers\TodoController::class, 'show'])->name('todo.index');
 
-Route::get('/todos/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todo.get.create');
+Route::get('/todo/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todo.show.create');
 
-Route::post('/todos/create', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.create');
+Route::post('/todo/create', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.create');
 
-Route::get('/todos/change/{todo}', [App\Http\Controllers\TodoController::class, 'editTodo'])->name('todo.get.update');
+Route::get('/todo/change/{todo}', [App\Http\Controllers\TodoController::class, 'editTodo'])->name('todo.show.update');
 
-Route::patch('/todos/change/{todo}',[App\Http\Controllers\TodoController::class, 'update'])->name('todo.update');
+Route::patch('/todo/change/{todo}',[App\Http\Controllers\TodoController::class, 'update'])->name('todo.update');
 
-Route::put('todos/completed/{todo}', [App\Http\Controllers\TodoController::class, 'completeTodo'])->name('todo.completed');
+Route::put('todo/completed/{todo}', [App\Http\Controllers\TodoController::class, 'completeTodo'])->name('todo.completed');
 
-Route::delete('/todos/delete/{todo}', [App\Http\Controllers\TodoController::class, 'delete'])->name('todo.delete');
+Route::delete('/todo/delete/{todo}', [App\Http\Controllers\TodoController::class, 'destroy'])->name('todo.delete');
 
 Auth::routes();
 

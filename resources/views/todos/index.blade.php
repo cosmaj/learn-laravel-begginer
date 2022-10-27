@@ -6,7 +6,7 @@
             <div class="shadow-lg col-md-9">
                 <div class="d-flex mt-3">
                     <h2 class="mx-auto fw-bolder text-muted">All Todos</h2>
-                    <a href="/todos/create" class="btn text-primary ms-auto mt-1 fs-2"><i class="fa fa-plus-circle"></i></a>
+                    <a href="{{route('todo.show.create')}}" class="btn text-primary ms-auto mt-1 fs-2"><i class="fa fa-plus-circle"></i></a>
                 </div>
                 <x-alert></x-alert>
                 <table class="table table-striped table-responsive">
@@ -38,7 +38,7 @@
                                         @method('put')
                                     </form>
                                 @endif
-                                <a href="/todos/change/{{$todo->id}}" class="btn text-warning"><i class="fa fa-pen"></i></a>
+                                <a href="{{route('todo.show.update', $todo->id)}}" class="btn text-warning"><i class="fa fa-pen"></i></a>
                                 <span class="btn text-danger"
                                       onclick="
                                       if (confirm('Are you sure you want to delete this todo?'))
