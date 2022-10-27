@@ -39,7 +39,15 @@
                                     </form>
                                 @endif
                                 <a href="/todos/change/{{$todo->id}}" class="btn text-warning"><i class="fa fa-pen"></i></a>
-                                <span class="btn text-danger" onclick="document.querySelector('#form-delete-{{$todo->id}}').submit();"><i class="fa fa-trash"></i></span>
+                                <span class="btn text-danger"
+                                      onclick="
+                                      if (confirm('Are you sure you want to delete this todo?'))
+                                      {
+                                          document.querySelector('#form-delete-{{$todo->id}}').submit();
+                                      }
+                                ">
+                                    <i class="fa fa-trash"></i>
+                                </span>
                                 <form class="d-none" id="form-delete-{{$todo->id}}" method="POST" action="{{route('todo.delete', $todo->id)}}">
                                     @csrf
                                     @method('delete')
