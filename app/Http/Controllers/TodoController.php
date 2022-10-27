@@ -28,23 +28,18 @@ class TodoController extends Controller
     }
 
     public function store(TodoCreationRequest $request){
-        if(trim($request->title)) {
-            $taskTitle = $this->sanitizeData($request->title);
-            Todo::storeTodo($taskTitle);
-            return redirect()->back()->with('success_message', 'Todo saved successfully!');
-        }
-        return redirect()->back()->with('error_message', 'Todo title is required');
+        $taskTitle = $this->sanitizeData($request->title);
+        Todo::storeTodo($taskTitle);
+        return redirect()->back()->with('success_message', 'Todo saved successfully!');
     }
 
     public function update(TodoCreationRequest $request, Todo $todo){
-        if(trim($request->title)) {
-            $taskTitle = $this->sanitizeData($request->title);
-            $completed = (bool)$request->completed;
-            $todo->update(['title'=> $taskTitle, 'completed' => $completed]);
-            return redirect(route('todo.index'))->with('success_message', 'Todo updated successfully!');
-        }
-        return redirect()->back()->with('error_message', 'Todo title is required');
+        $taskTitle = $this->sanitizeData($request->title);
+        $completed = (bool)$request->completed;
+        $todo->update(['title'=> $taskTitle, 'completed' => $completed]);
+        return redirect(route('todo.index'))->with('success_message', 'Todo updated successfully!');
     }
+
     public function destroy(Todo $todo){
         $todo->delete();
         return redirect(route('todo.index'))->with('success_message', 'Todo deleted Successfully!');
