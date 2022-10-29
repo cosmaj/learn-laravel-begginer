@@ -59,7 +59,14 @@
                     @endforelse
                     </tbody>
                 </table>
+                @if(count($todos) > 0)
+                    <div class="pagination">
+                        {{ $todos->links() }}
+                    </div>
+                @endif
             </div>
+
         </div>
+
     </div>
 @endsection

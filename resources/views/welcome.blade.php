@@ -37,7 +37,14 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                @Cosmaj
+                <div class="d-flex">
+                    <div>
+                        <a class="btn" href="{{route('todo.index')}}">My Todo</a>
+                    </div>
+                    <div>
+                        <a class="btn" href="{{route('home')}}">Profile Image</a>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
