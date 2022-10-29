@@ -39,9 +39,8 @@ class TodoController extends Controller
 
     public function store(TodoCreationRequest $request)
     {
-//        return dd(auth()->user()->todos());
-//        $taskTitle = $this->sanitizeData($request->title);
 //        Todo::storeTodo($taskTitle);
+        $request['title'] = $this->sanitizeData($request->title);
         auth()->user()->todos()->create($request->all());
         return redirect()->back()->with('success_message', 'Todo saved successfully!');
     }
