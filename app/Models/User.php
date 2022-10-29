@@ -68,6 +68,7 @@ class User extends Authenticatable
         $randomString = "${time} ${fileName} ${username}";
         return bcrypt($randomString);
     }
+
     public static function uploadAvatar($image)
     {
         $fileName = $image->getClientOriginalName();
@@ -80,4 +81,9 @@ class User extends Authenticatable
         auth()->user()->update(['avatar' => $newFileName]);
     }
 
+    //Create a relationship of user with other attributes
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 }

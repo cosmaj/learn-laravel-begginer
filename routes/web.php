@@ -23,7 +23,10 @@ Route::get('/', function () {
 // OR
 Route::get('/user', 'App\Http\Controllers\UserController@index');
 
-Route::post('/upload', [App\Http\Controllers\UserController::class, 'uploadImage']);
+//Create group of routes requiring Auth users, alternative way
+Route::middleware('auth')->group(function (){
+    Route::post('/upload', [App\Http\Controllers\UserController::class, 'uploadImage']);
+});
 
 Route::get('/todo', [App\Http\Controllers\TodoController::class, 'show'])->name('todo.index');
 

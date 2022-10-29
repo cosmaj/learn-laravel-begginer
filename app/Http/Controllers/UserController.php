@@ -17,7 +17,7 @@ class UserController extends Controller
 
     }
     public function index()
-    {   
+    {
         // Save User data
 
         // $user = new User();
@@ -28,7 +28,7 @@ class UserController extends Controller
 
         // Show all users
 
-        return User::all();
+        //return User::all();
 
         // Delete user
 

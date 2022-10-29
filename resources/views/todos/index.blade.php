@@ -19,7 +19,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($todos as $todo)
+                    @forelse($todos as $todo)
                         <tr>
                             @if($todo->completed)
                                 <td> <del>{{ $todo->title }}</del> </td>
@@ -54,7 +54,9 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr><td colspan="4" class="text-center">You have no todo records, you can create one!</td></tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>

@@ -11,7 +11,7 @@ class Todo extends Model
 
     protected $fillable = ['user_id', 'title', 'completed'];
 
-    public static function storeTodo($taskTitle){
-        (new self)::create(['user_id' => auth()->user()->id, 'title' => $taskTitle]);
-    }
+//    public static function storeTodo($taskTitle){
+//        (new self)::create(['user_id' => auth()->user()->id, 'title' => $taskTitle]);
+//    }
 }
