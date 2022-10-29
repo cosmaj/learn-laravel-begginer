@@ -71,14 +71,22 @@ class User extends Authenticatable
 
     public static function uploadAvatar($image)
     {
+        $allowedImageType = ['JPEG', 'JPG', 'PNG', 'SVG'];
         $fileName = $image->getClientOriginalName();
         $fileExtension = explode('.', $fileName);
         $extension = $fileExtension[count($fileExtension)-1];
-        (new self)->deleteOldImage();
-        $newFileName = User::generateFileName($fileName);
-        $newFileName = "${newFileName}.${extension}";
-        $image->storeAs('profile_images', $newFileName, 'public');
-        auth()->user()->update(['avatar' => $newFileName]);
+
+        if(in_array(strtoupper($extension), $allowedImageType)){
+            (new self)->deleteOldImage();
+            $newFileName = User::generateFileName($fileName);
+            $newFileName = "${newFileName}.${extension}";
+            $image->storeAs('profile_images', $newFileName, 'public');
+            auth()->user()->update(['avatar' => $newFileName]);
+            return redirect(route('home'))->with('success_message', 'Avatar uploaded successfully!');
+        }
+
+        return redirect(route('home'))->with('error_message', 'Only .JPG, .JPEG, .PNG and .SVG are allowed');
+
     }
 
     //Create a relationship of user with other attributes
