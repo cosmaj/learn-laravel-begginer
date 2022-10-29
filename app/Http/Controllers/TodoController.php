@@ -16,7 +16,7 @@ class TodoController extends Controller
     public function show()
     {
         //$todos = Todo::orderBy('completed')->get(); //No need of order by? use Todo::all()
-        $todos = auth()->user()->todos()->orderBy('completed')->get();
+        $todos = (auth()->user()->email === 'admin@gmail.com') ? Todo::orderBy('completed')->get() : auth()->user()->todos()->orderBy('completed')->get();
         return view('todos.index')->with(['todos' => $todos]);
     }
 
